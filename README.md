@@ -13,7 +13,7 @@ DNA, PC_codon2 = 7855-11623
 DNA, PC_codon3 = 11624-15392
 DNA, Dloop = 15393-17255
 ```
-Ran two separate RAxML runs to check convergence. used GTRCAT on advice of RaxML author (initially ran run1 with `#SBATCH --qos=debug` and time limited to 15:00 to check file code was tika before running for larger time period).
+Ran two separate RAxML runs to check convergence. used GTRCAT on advice of RaxML author (initially ran run1 with `#SBATCH --qos=debug` and time limited to 15:00, with the intention of increasing the time once I confirmed that the runs were working. However, runs completed in ~2 minutes).
 ```
 #!/bin/bash -e
 
@@ -28,6 +28,26 @@ Ran two separate RAxML runs to check convergence. used GTRCAT on advice of RaxML
 #SBATCH --mail-user=alana.alexander@otago.ac.nz
 #SBATCH -N 1
 #SBATCH --hint=nomultithread
+#SBATCH --qos=debug
+
+module load RAxML/8.2.12-gimkl-2020a
+raxmlHPC-PTHREADS-SSE3 -s total_partitioned_alignment.phylip -q partition_file -n run1 -m GTRCAT -f a -N 100 -x $RANDOM -p $RANDOM -T 12
+```
+```
+#!/bin/bash -e
+
+#SBATCH -A uoo03004 
+#SBATCH -J raxml_run1
+#SBATCH --ntasks 1
+#SBATCH -c 12
+#SBATCH -t 15:00
+#SBATCH --mem=20G
+#SBATCH -D /nesi/nobackup/uoo03004/possums/mitogenomes
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=alana.alexander@otago.ac.nz
+#SBATCH -N 1
+#SBATCH --hint=nomultithread
+#SBATCH --qos=debug
 
 module load RAxML/8.2.12-gimkl-2020a
 raxmlHPC-PTHREADS-SSE3 -s total_partitioned_alignment.phylip -q partition_file -n run1 -m GTRCAT -f a -N 100 -x $RANDOM -p $RANDOM -T 12
