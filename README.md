@@ -52,3 +52,4 @@ raxmlHPC-PTHREADS-SSE3 -s total_partitioned_alignment.phylip -q partition_file -
 module load RAxML/8.2.12-gimkl-2020a
 raxmlHPC-PTHREADS-SSE3 -s total_partitioned_alignment.phylip -q partition_file -n run1 -m GTRCAT -f a -N 100 -x $RANDOM -p $RANDOM -T 12
 ```
+Following runs, downloaded RAxML_bipartitions file for each run and checked for topological convergence. After confirming this, run with the best likelihood (as presented in RAxML_info) used as representative tree, following Alexander and Short (XXXX).
