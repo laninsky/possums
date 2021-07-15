@@ -77,7 +77,7 @@ Ran two separate runs to check convergence (initially ran run1 with `#SBATCH --q
 #!/bin/bash -e
 
 #SBATCH -A uoo03004
-#SBATCH -J 50perc_run1
+#SBATCH -J exabayes_run1
 #SBATCH --ntasks 1
 #SBATCH -c 36
 #SBATCH -t 15:00
@@ -88,7 +88,6 @@ Ran two separate runs to check convergence (initially ran run1 with `#SBATCH --q
 #SBATCH -N 1
 #SBATCH --qos=debug
 
-module load OpenMPI/4.1.1-GCC-9.2.0
 module load ExaBayes/1.5.1-gimpi-2020a
-exabayes -f total_partitioned_alignment.phylip -q exabayes_partition_file -s $RANDOM -n run1 -T 72 -M 0 -c config.nexus
+yggdrasil -f total_partitioned_alignment.phylip -q exabayes_partition_file -s $RANDOM -n run1 -T 72 -M 0 -c config.nexus
 ```
