@@ -82,7 +82,7 @@ Ran two separate runs to check convergence (initially ran run1 with `#SBATCH --q
 #SBATCH -c 36
 #SBATCH -t 15:00
 #SBATCH --mem=105G
-#SBATCH -D /nesi/nobackup/uoo00105/beetles/50perc_raxml
+#SBATCH -D /nesi/nobackup/uoo03004/possums/mitogenomes
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=alana.alexander@otago.ac.nz
 #SBATCH -N 1
