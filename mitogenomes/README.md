@@ -107,3 +107,9 @@ yggdrasil -f total_partitioned_alignment.phylip -q exabayes_partition_file -s $R
 module load ExaBayes/1.5.1-gimpi-2020a
 yggdrasil -f total_partitioned_alignment.phylip -q exabayes_partition_file -s $RANDOM -n run2 -T 72 -M 0 -c config.nexus
 ```
+Following the runs, checking parameter convergence:
+```
+module load ExaBayes/1.5.1-gimpi-2020a
+postProcParam -n run1 -f ExaBayes_parameters*run1
+postProcParam -n run2 -f ExaBayes_parameters*run2
+```
