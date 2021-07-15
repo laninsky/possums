@@ -1,6 +1,3 @@
-# possums
-Leveraging hybrid zones to identify genes important to reproduction and survival in possums
-
 ### Mitogenomes
 Received mitogenomes assembled to reference from RNAseq data from Oscar. Aligned these using the default Geneious algorithm. Double-checked for "sane" protein-coding regions (e.g. no premature stop codons/frame-shift mutations etc). Checked entire alignment by eye and realigned indel regions for control region (only part of the alignment that looked a little more problematic). Conducted a quick and dirty UPGMA and NJ tree on the entire alignment. Based on these results, unclear whether there are two Tasmanian clades and one Mainland clade, or vice-versa. Due to confusion, decided to export partitioned mitogenome and try ML and Bayesian methods.  
 
@@ -53,3 +50,11 @@ module load RAxML/8.2.12-gimkl-2020a
 raxmlHPC-PTHREADS-SSE3 -s total_partitioned_alignment.phylip -q partition_file -n run1 -m GTRCAT -f a -N 100 -x $RANDOM -p $RANDOM -T 12
 ```
 Following runs, downloaded RAxML_bipartitions file for each run and checked for topological convergence. After confirming this, run with the best likelihood (as presented in RAxML_info) used as representative tree, following Alexander and Short (XXXX). No highly-supported discordant clades were found between the runs, and run 2 was found to have the highest likelihood.
+
+To run ExaBayes, created the config.nexus file exabayes needs (contents below), following the methods of https://github.com/laninsky/beetles/tree/master/hydrophiloidea_analyses:
+```
+begin run; 
+   numRuns 4
+   numCoupledChains 3
+end;
+```
