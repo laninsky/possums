@@ -63,3 +63,31 @@ begin run;
    numCoupledChains 3
 end;
 ```
+Also slightly tweaked `partition_file` to `exabayes_partition_file` by removing the spaces before and after the = sign:
+```
+DNA, rRNA=1-2510
+DNA, tRNA=2511-4085
+DNA, PC_codon1=4086-7854
+DNA, PC_codon2=7855-11623
+DNA, PC_codon3=11624-15392
+DNA, Dloop=15393-17255
+```
+Ran two separate runs to check convergence (initially ran run1 with `#SBATCH --qos=debug` and time limited to 15:00, with the intention of increasing the time once I confirmed that the runs were working).
+```
+#!/bin/bash -e
+
+#SBATCH -A uoo03004
+#SBATCH -J 50perc_run1
+#SBATCH --ntasks 1
+#SBATCH -c 36
+#SBATCH -t 15:00
+#SBATCH --mem=105G
+#SBATCH -D /nesi/nobackup/uoo00105/beetles/50perc_raxml
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=alana.alexander@otago.ac.nz
+#SBATCH -N 1
+#SBATCH --qos=debug
+
+module load ExaBayes/1.5.1-gimpi-2020a
+exabayes -f total_partitioned_alignment.phylip -q exabayes_partition_file -s $RANDOM -n run1 -T 72 -M 0 -c config.nexus
+```
