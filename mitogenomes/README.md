@@ -79,15 +79,31 @@ Ran two separate runs to check convergence (initially ran run1 with `#SBATCH --q
 #SBATCH -A uoo03004
 #SBATCH -J exabayes_run1
 #SBATCH --ntasks 1
-#SBATCH -c 36
-#SBATCH -t 15:00
+#SBATCH -c 72
+#SBATCH -t 48:00:00
 #SBATCH --mem=105G
 #SBATCH -D /nesi/nobackup/uoo03004/possums/mitogenomes
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=alana.alexander@otago.ac.nz
 #SBATCH -N 1
-#SBATCH --qos=debug
 
 module load ExaBayes/1.5.1-gimpi-2020a
 yggdrasil -f total_partitioned_alignment.phylip -q exabayes_partition_file -s $RANDOM -n run1 -T 72 -M 0 -c config.nexus
+```
+```
+#!/bin/bash -e
+
+#SBATCH -A uoo03004
+#SBATCH -J exabayes_run2
+#SBATCH --ntasks 1
+#SBATCH -c 72
+#SBATCH -t 48:00:00
+#SBATCH --mem=105G
+#SBATCH -D /nesi/nobackup/uoo03004/possums/mitogenomes
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=alana.alexander@otago.ac.nz
+#SBATCH -N 1
+
+module load ExaBayes/1.5.1-gimpi-2020a
+yggdrasil -f total_partitioned_alignment.phylip -q exabayes_partition_file -s $RANDOM -n run2 -T 72 -M 0 -c config.nexus
 ```
