@@ -152,7 +152,7 @@ for (i in unique(data$paramName)) {
   ggsave(paste(i,".pdf"))
 }
 
-data %>% filter(ESS<=200) %>% select(paramName,ESS,run)
+data %>% filter(ESS<=200) %>% select(paramName,ESS,run) %>% arrange(paramName)
 ```
 
 
