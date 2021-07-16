@@ -154,7 +154,7 @@ for (i in unique(data$paramName)) {
 
 data %>% filter(ESS<=200) %>% select(paramName,ESS,run) %>% arrange(paramName)
 ```
-Following the initial full-length runs (approximately 4 hours in length), ESS values associated with LnL and some parameters (particularly G-T transversions) were low for all partitions. This suggests that there is not enough variation across our partitions to implement GTR (the only model in ExaBayes).
+Following the initial full-length runs (approximately 4 hours in length), ESS values associated with LnL and some parameters (particularly G-T transversions) were low for all partitions. This suggests that there is not enough variation across our partitions to implement GTR (the only model in ExaBayes). Because of this, we went back to our partition alignments in Geneious, and exported them as nexus format so we could set up a BEAST analysis through BEAUTi.
 
-
+## BEAST
 
