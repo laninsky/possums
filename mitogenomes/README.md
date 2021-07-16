@@ -151,8 +151,8 @@ for (i in unique(data$paramName)) {
       plot.title = element_text(hjust=0.5))
   ggsave(paste(i,".pdf"))
 }
-getwd()
 
+data %>% filter(ESS<=200) %>% select(paramName,ESS,run)
 ```
 
 
