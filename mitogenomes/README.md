@@ -1,7 +1,7 @@
 ## Mitogenomes
 
 ### Alignment prep
-Received mitogenomes assembled to reference from RNAseq data from Oscar. Aligned these using the default Geneious algorithm. Double-checked for "sane" protein-coding regions (e.g. no premature stop codons/frame-shift mutations etc). Checked entire alignment by eye and realigned indel regions for control region (only part of the alignment that looked a little more problematic). Conducted a quick and dirty UPGMA and NJ tree on the entire alignment. Based on these results, unclear whether there are two Tasmanian clades and one Mainland clade, or vice-versa. Due to confusion, decided to export partitioned mitogenome and try ML and Bayesian methods.  
+Received mitogenomes assembled to reference from RNAseq data from Oscar. Aligned these using the default Geneious algorithm. Double-checked for "sane" protein-coding regions (e.g. no premature stop codons/frame-shift mutations etc). Checked entire alignment by eye and realigned indel regions for control region (only part of the alignment that looked a little more problematic). Conducted a quick and dirty UPGMA and NJ tree on the entire alignment. Based on these results, unclear whether there are two Tasmanian clades and one Mainland clade, or vice-versa. Due to this confusion, decided to export partitioned mitogenome and try ML and Bayesian methods.  
 
 Following this, extracted the following partitions: concatenated rRNA genes, concatenated tRNA genes, concatenated protein-coding genes coded on the forward strand, ND6 (coded on the reverse strand), and control region/D-loop. Reverse-complemented ND6, and checked all protein-coding genes had nucleotides in multiples of threes, adding Ns if not (i.e. due to incomplete stop codons and/or removing of overlapping regions, as overlapping regions between any genes were excluded. Protein-coding genes, including ND6, were then masked to specific codon positions. All partitions were then concatenated, and file was exported as [phylip](https://github.com/laninsky/possums/blob/main/mitogenomes/data/total_partitioned_alignment.phylip). The following file (`partion_file`) was generated based on alignment order/length for partitioning RAxML and ExaBayes analyses:
 ```
@@ -72,7 +72,7 @@ DNA, PC_codon2=7855-11623
 DNA, PC_codon3=11624-15392
 DNA, Dloop=15393-17255
 ```
-Ran two separate runs to check convergence (initially ran run1 with `#SBATCH --qos=debug` and time limited to 15:00, with the intention of increasing the time once I confirmed that the runs were working).
+Ran two separate runs to check convergence (initially ran run1 with `#SBATCH --qos=debug` and time limited to 15:00, with the intention of increasing the time once I confirmed that the runs were working). 
 ```
 #!/bin/bash -e
 
@@ -154,7 +154,7 @@ for (i in unique(data$paramName)) {
 
 data %>% filter(ESS<=200) %>% select(paramName,ESS,run) %>% arrange(paramName)
 ```
-
+Following the initial full-length runs (approximately 4 hours in length), ESS values associated with LnL and some parameters (particularly G-T transversions) were low for all partitions. This suggests that there is not enough variation across our partitions to implement GTR (the only model in ExaBayes).
 
 
 
