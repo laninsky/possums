@@ -160,3 +160,4 @@ Following the initial full-length runs (approximately 4 hours in length), ESS va
 Following the two BEAST runs, the logs were viewed in Tracer to determine appropriate burn-in. Following this, log and tree files had burn-in removed, and states thinned to leave approximately 20,000 states. Following this, TreeAnnotator was used to create a consensus tree for each run.
 ```
 /opt/nesi/CS400_centos7_bdw/BEAST/2.6.3/bin/logcombiner -log PC_codon3.log -burnin 60 -resample 10000 -o beast_run2_thinned.log
+/opt/nesi/CS400_centos7_bdw/BEAST/2.6.3/bin/logcombiner -log PC_codon3.trees -burnin 60 -resample 10000 -o beast_run2_thinned.trees
