@@ -161,3 +161,7 @@ Following the two BEAST runs, the logs were viewed in Tracer to determine approp
 ```
 /opt/nesi/CS400_centos7_bdw/BEAST/2.6.3/bin/logcombiner -log PC_codon3.log -burnin 60 -resample 10000 -o beast_run2_thinned.log
 /opt/nesi/CS400_centos7_bdw/BEAST/2.6.3/bin/logcombiner -log PC_codon3.trees -burnin 60 -resample 10000 -o beast_run2_thinned.trees
+
+/opt/nesi/CS400_centos7_bdw/BEAST/2.6.3/bin/logcombiner -log PC_codon3.log -burnin 90 -resample 2000 -o beast_run1_thinned.log
+/opt/nesi/CS400_centos7_bdw/BEAST/2.6.3/bin/logcombiner -log PC_codon3.trees -burnin 90 -resample 2000 -o beast_run1_thinned.trees
+
