@@ -22,7 +22,7 @@ Following this, I exported these alignments to [evaluate levels of missingness](
 | tRNA        | Reference   |             37.3                    |
 | tRNA        | RNA         |             94.4                    |
 
-Based on this, we decided to do phylogenetic reconstructions on the protein-coding regions only to limit the influence of how the mitogenome was generated for each sample. I next checked levels of missing data for each of the duplicated tissues of Sandy to choose the sample with the least missing data across the protein-coding genes.
+Based on this, we decided to do phylogenetic reconstructions on the protein-coding regions only to limit the influence of how the mitogenome was generated for each sample. I next checked levels of missing data for each of the duplicated tissues of Sandy to [choose the sample with the least missing data](summarising_missing_data.R) across the protein-coding genes. We ended up retaining liver.
 
 Following this, I concatenated the protein-coding genes and partitioned out into codon 1, codon 2, and codon 3. All of these partitions were then concatenated, and the file was exported as [phylip](https://github.com/laninsky/possums/blob/main/mitogenomes/data/total_partitioned_alignment.phylip). The following file (`partion_file`) was generated based on alignment order/length for partitioning for the RAxML analysis:
 ```
