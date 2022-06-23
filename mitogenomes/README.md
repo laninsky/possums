@@ -22,7 +22,7 @@ Following this, I exported these alignments to check levels of missing data per 
 | tRNA        | Reference   |             37.3                    |
 | tRNA        | RNA         |             94.4                    |
 
-
+Based on this, we decided to do phylogenetic reconstructions on the protein-coding regions only to limit the influence of how the mitogenome was generated for each sample.
 
 
 # WHO WAS REMOVED BASED ON THIS, AND WERE ALL REGIONS USED?
