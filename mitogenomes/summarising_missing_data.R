@@ -127,3 +127,17 @@ ggplot(mean_missing_data, mapping=aes(x=Sample_type,y=mean_missing,colour=Sample
 ggsave("missing__by_region.pdf",units = "in",width = 22,height=14)
 
 mean_missing_data %>% group_by(Region_type,Sample_type) %>% summarise(max(mean_missing))
+
+# Evaluating missing data between the liver and spleen for Sandy
+ggpaired((initial_data %>% filter(grepl("Sandy",Samples)) %>% filter(Region_type=="coding")),
+         x="Samples",y="Missing_data",color="Samples",palette="jco", line.color="gray")
+
+# No signficant difference in missing data
+t.test((initial_data %>% filter(Samples=="RNA_possum_Sandy_liver") %>% arrange(Alignment) %>% select(Missing_data) %>% as.matrix()),
+(initial_data %>% filter(Samples=="RNA_possum_Sandy_spleen") %>% arrange(Alignment) %>% select(Missing_data) %>% as.matrix()),
+paired=TRUE,alternative="two.sided")
+
+# Mean missing data for each
+initial_data %>% filter(grepl("Sandy",Samples)) %>% group_by(Samples) %>% summarise(mean(Missing_data))
+
+# Spleen has slightly more, and because the majority of samples are liver, will retain liver
