@@ -24,7 +24,7 @@ Following this, I exported these alignments to [evaluate levels of missingness](
 
 Based on this, we decided to do phylogenetic reconstructions on the protein-coding regions only to limit the influence of how the mitogenome was generated for each sample. I next checked levels of missing data for each of the duplicated tissues of Sandy to [choose the sample with the least missing data](summarising_missing_data.R) across the protein-coding genes. We ended up retaining liver.
 
-Following this, I concatenated the protein-coding genes. I then double-checked to make sure there were no discrepancies between our three maternally-related individuals, Sandy, Puku and Sheila (and there weren't!). I then partitioned out into codon 1, codon 2, and codon 3. All of these partitions were then concatenated, and the file was exported as [phylip](https://github.com/laninsky/possums/blob/main/mitogenomes/data/total_partitioned_alignment.phylip). The following file (`partion_file`) was generated based on alignment order/length for partitioning for the RAxML analysis:
+Following this, I concatenated the protein-coding genes. I then double-checked to make sure there were no discrepancies between our three maternally-related individuals, Sandy, Puku and Sheila (and there weren't!). I then partitioned out into codon 1, codon 2, and codon 3. All of these partitions were then concatenated, and the file was exported as [phylip](data/concatenated_codon_partitioned_protein_coding_genes.phy). The following file (`partion_file`) was generated based on alignment order/length for partitioning for the RAxML analysis:
 ```
 DNA, PC_codon1 = 1-3761
 DNA, PC_codon2 = 3762-7522
