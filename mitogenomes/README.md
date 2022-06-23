@@ -5,7 +5,26 @@ Received mitogenomes assembled to reference from RNAseq data from Oscar and LR-P
 
 Following this, I extracted annotated regions (e.g. tRNAs, rRNAs, origin of light strand, protein-coding regions, d-loop). Regions with no annotations, or overlapping annotations, were not extracted. I then double-checked for "sane" protein-coding regions (e.g. no premature stop codons/frame-shift mutations etc), and added extra Ns if protein-coding genes were not in multiples of three (for codon-partitioned models downstream). ND6 was reverse-complemented.
 
-Following this, I exported these alignments to check levels of missing data per sample (to select for the representative tissue to use for Sandy), and to evaluate levels of missingness for each region by data type (e.g. RNAseq vs LR-PCR). # WHO WAS REMOVED BASED ON THIS, AND WERE ALL REGIONS USED?
+Following this, I exported these alignments to check levels of missing data per sample (to select for the representative tissue to use for Sandy), and to evaluate levels of missingness for each region by data type (e.g. RNAseq vs LR-PCR). We found that the RNAseq samples had considerably more missing data than other data types for the majority of the tRNAs (all bar one), for both of the rRNAs, and for both of the "other" partitions (origin of light strand and d-loop). In contrast, only eight of the protein-coding genes had signficantly more missing data for the RNAseq samples (COX1, COX2, COX3, ND1, ND2, ND3, ND4L, ND5), and overall these levels of missing data were lower:
+
+| Region type | Sample type | Maximum missing data over all genes |
+| coding      | LRPCR       |              0.692                  |
+| coding      | Reference   |              0.606                  |
+| coding      | RNA         |              1.24                   |
+| other       | LRPCR       |              3.67                   |
+| other       | Reference   |              6.49                   |
+| other       | RNA         |             33.6                    |
+| rRNA        | LRPCR       |              0.0885                 |
+| rRNA        | Reference   |              0.711                  |
+| rRNA        | RNA         |              4.90                   |
+| tRNA        | LRPCR       |             14.9                    |
+| tRNA        | Reference   |             37.3                    |
+| tRNA        | RNA         |             94.4                    |
+
+
+
+
+# WHO WAS REMOVED BASED ON THIS, AND WERE ALL REGIONS USED?
 
 Following this, I created six partitions: concatenated rRNA genes, concatenated tRNA genes, concatenated protein-coding gene codon 1 positions, codon 2 positions, codon 3 positions and control region/D-loop. All partitions were then concatenated, and file was exported as [phylip](https://github.com/laninsky/possums/blob/main/mitogenomes/data/total_partitioned_alignment.phylip). The following file (`partion_file`) was generated based on alignment order/length for partitioning RAxML and ExaBayes analyses:
 ```
