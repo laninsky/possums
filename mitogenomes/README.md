@@ -40,14 +40,13 @@ Ran two separate RAxML runs to check convergence. used GTRCAT on advice of RaxML
 #SBATCH -J raxml_run1
 #SBATCH --ntasks 1
 #SBATCH -c 12
-#SBATCH -t 15:00
-#SBATCH --mem=20G
+#SBATCH -t 24:00:00
+#SBATCH --mem=1G
 #SBATCH -D /nesi/nobackup/uoo03398/possum_mitogenomes
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=alana.alexander@otago.ac.nz
 #SBATCH -N 1
 #SBATCH --hint=nomultithread
-#SBATCH --qos=debug
 
 module load RAxML/8.2.12-gimkl-2020a
 raxmlHPC-PTHREADS-SSE3 -s concatenated_codon_partitioned_protein_coding_genes.phy -q partition_file -n run1 -m GTRCAT -f a -N 100 -x $RANDOM -p $RANDOM -T 12
@@ -59,14 +58,13 @@ raxmlHPC-PTHREADS-SSE3 -s concatenated_codon_partitioned_protein_coding_genes.ph
 #SBATCH -J raxml_run2
 #SBATCH --ntasks 1
 #SBATCH -c 12
-#SBATCH -t 15:00
-#SBATCH --mem=20G
+#SBATCH -t 24:00:00
+#SBATCH --mem=1G
 #SBATCH -D /nesi/nobackup/uoo03398/possum_mitogenomes
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=alana.alexander@otago.ac.nz
 #SBATCH -N 1
 #SBATCH --hint=nomultithread
-#SBATCH --qos=debug
 
 module load RAxML/8.2.12-gimkl-2020a
 raxmlHPC-PTHREADS-SSE3 -s concatenated_codon_partitioned_protein_coding_genes.phy -q partition_file -n run2 -m GTRCAT -f a -N 100 -x $RANDOM -p $RANDOM -T 12
