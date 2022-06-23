@@ -32,7 +32,7 @@ DNA, PC_codon3 = 7523-11283
 ```
 
 ## RAxML
-Ran two separate RAxML runs to check convergence. used GTRCAT on advice of RaxML author (initially ran run1 with `#SBATCH --qos=debug` and time limited to 15:00, with the intention of increasing the time once I confirmed that the runs were working. However, runs completed in ~2 minutes).
+Ran two separate RAxML runs to check convergence. Used GTRCAT on advice of RaxML author. Dialed in resource use for run 2 based on the `nn_seff` results from run 1.
 ```
 #!/bin/bash -e
 
@@ -58,8 +58,8 @@ raxmlHPC-PTHREADS-SSE3 -s concatenated_codon_partitioned_protein_coding_genes.ph
 #SBATCH -J raxml_run2
 #SBATCH --ntasks 1
 #SBATCH -c 12
-#SBATCH -t 24:00:00
-#SBATCH --mem=1G
+#SBATCH -t 2:00:00
+#SBATCH --mem=200M
 #SBATCH -D /nesi/nobackup/uoo03398/possum_mitogenomes
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=alana.alexander@otago.ac.nz
