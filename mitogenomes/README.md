@@ -75,6 +75,42 @@ Although we [ran exabayes](old_analyses/exabayes.md) on previous exploratory ana
 
 ## BEAST
 In our previous explatory analyses of the full mitogenome alignment we progressively simplified the site model in rensponse to poor ESS values, eventually settling on a gamma site model (4 categories, initial shape 1.0, estimated) and TN93 with Kappa1 and Kappa2 set at 2.0, but estimated. Site frequencies were also estimated. We did not estimate proportion invariant due to the interactions that can set up between that and a gamma site model. We implemented a Strict Clock, as we did not expect marked rate variation given all individuals were from the same species. We used a Coalescent Bayesian Skyline as our tree model due to uncertainty about population demography. Tree was linked across all partitions, but site and clock was allowed to vary. We ran two runs of 500,000,000, sampling every 10,000 states. We used these same parameters for our protein-coding gene only analyses (partitioned by codon).
+```
+#!/bin/bash -e
+
+#SBATCH -A uoo03398 
+#SBATCH -J beast_run1
+#SBATCH --ntasks 1
+#SBATCH -c 12
+#SBATCH -t 72:00:00
+#SBATCH --mem=8G
+#SBATCH -D /nesi/nobackup/uoo03398/possum_mitogenomes/beast/run1
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=alana.alexander@otago.ac.nz
+#SBATCH -N 1
+#SBATCH --hint=nomultithread
+
+module load BEAST/2.6.6
+beast -threads 12 beast_possum_mitogenome_Jun2022.xml
+
+#!/bin/bash -e
+
+#SBATCH -A uoo03398 
+#SBATCH -J beast_run2
+#SBATCH --ntasks 1
+#SBATCH -c 12
+#SBATCH -t 72:00:00
+#SBATCH --mem=8G
+#SBATCH -D /nesi/nobackup/uoo03398/possum_mitogenomes/beast/run2
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=alana.alexander@otago.ac.nz
+#SBATCH -N 1
+#SBATCH --hint=nomultithread
+
+module load BEAST/2.6.6
+beast -threads 12 beast_possum_mitogenome_Jun2022.xml
+
+```
 
 Following the two BEAST runs, the logs were viewed in Tracer to determine appropriate burn-in. Following this, log and tree files had burn-in removed, and states thinned to leave approximately 20,000 states. Following this, TreeAnnotator was used to create a consensus tree for each run.
 ```
