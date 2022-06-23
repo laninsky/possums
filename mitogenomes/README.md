@@ -36,13 +36,13 @@ Ran two separate RAxML runs to check convergence. used GTRCAT on advice of RaxML
 ```
 #!/bin/bash -e
 
-#SBATCH -A uoo03004 
+#SBATCH -A uoo03398 
 #SBATCH -J raxml_run1
 #SBATCH --ntasks 1
 #SBATCH -c 12
 #SBATCH -t 15:00
 #SBATCH --mem=20G
-#SBATCH -D /nesi/nobackup/uoo03004/possums/mitogenomes
+#SBATCH -D /nesi/nobackup/uoo03398/possum_mitogenomes
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=alana.alexander@otago.ac.nz
 #SBATCH -N 1
@@ -50,18 +50,18 @@ Ran two separate RAxML runs to check convergence. used GTRCAT on advice of RaxML
 #SBATCH --qos=debug
 
 module load RAxML/8.2.12-gimkl-2020a
-raxmlHPC-PTHREADS-SSE3 -s total_partitioned_alignment.phylip -q partition_file -n run1 -m GTRCAT -f a -N 100 -x $RANDOM -p $RANDOM -T 12
+raxmlHPC-PTHREADS-SSE3 -s concatenated_codon_partitioned_protein_coding_genes.phy -q partition_file -n run1 -m GTRCAT -f a -N 100 -x $RANDOM -p $RANDOM -T 12
 ```
 ```
 #!/bin/bash -e
 
-#SBATCH -A uoo03004 
-#SBATCH -J raxml_run1
+#SBATCH -A uoo03398 
+#SBATCH -J raxml_run2
 #SBATCH --ntasks 1
 #SBATCH -c 12
 #SBATCH -t 15:00
 #SBATCH --mem=20G
-#SBATCH -D /nesi/nobackup/uoo03004/possums/mitogenomes
+#SBATCH -D /nesi/nobackup/uoo03398/possum_mitogenomes
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=alana.alexander@otago.ac.nz
 #SBATCH -N 1
@@ -69,11 +69,11 @@ raxmlHPC-PTHREADS-SSE3 -s total_partitioned_alignment.phylip -q partition_file -
 #SBATCH --qos=debug
 
 module load RAxML/8.2.12-gimkl-2020a
-raxmlHPC-PTHREADS-SSE3 -s total_partitioned_alignment.phylip -q partition_file -n run1 -m GTRCAT -f a -N 100 -x $RANDOM -p $RANDOM -T 12
+raxmlHPC-PTHREADS-SSE3 -s concatenated_codon_partitioned_protein_coding_genes.phy -q partition_file -n run2 -m GTRCAT -f a -N 100 -x $RANDOM -p $RANDOM -T 12
 ```
 Following runs, downloaded RAxML_bipartitions file for each run and checked for topological convergence. After confirming this, run with the best likelihood (as presented in RAxML_info) was used as representative tree. No highly-supported discordant clades were found between the runs, and run 2 was found to have the highest likelihood. These outputs are available [here](https://github.com/laninsky/possums/tree/main/mitogenomes/output).
 
-Although we initially [ran exabayes](old_analyses/exabayes.md) on previous exploratory analyses of the full mitogenome alignment, following the initial full-length runs (approximately 4 hours in length), ESS values associated with LnL and some parameters (particularly G-T transversions) were low for all partitions. This suggests that there is not enough variation across our partitions to implement GTR (the only model in ExaBayes). Because of this, for the current analyses where we've used even less of the full alignment (by only including the protein-coding genes), we exported our protein-coding partitions as nexus format so we could set up a BEAST analysis through BEAUTi.
+Although we [ran exabayes](old_analyses/exabayes.md) on previous exploratory analyses of the full mitogenome alignment, following the initial full-length runs (approximately 4 hours in length), ESS values associated with LnL and some parameters (particularly G-T transversions) were low for all partitions. This suggests that there is not enough variation across our partitions to implement GTR (the only model in ExaBayes). Because of this, for the current analyses where we've used even less of the full alignment (by only including the protein-coding genes), we exported our protein-coding partitions as nexus format so we could set up a Bayesian BEAST analysis through BEAUTi.
 
 ## BEAST
 Following the two BEAST runs, the logs were viewed in Tracer to determine appropriate burn-in. Following this, log and tree files had burn-in removed, and states thinned to leave approximately 20,000 states. Following this, TreeAnnotator was used to create a consensus tree for each run.
