@@ -8,6 +8,7 @@ Following this, I extracted annotated regions (e.g. tRNAs, rRNAs, origin of ligh
 Following this, I exported these alignments to check levels of missing data per sample (to select for the representative tissue to use for Sandy), and to evaluate levels of missingness for each region by data type (e.g. RNAseq vs LR-PCR). We found that the RNAseq samples had considerably more missing data than other data types for the majority of the tRNAs (all bar one), for both of the rRNAs, and for both of the "other" partitions (origin of light strand and d-loop). In contrast, only eight of the protein-coding genes had signficantly more missing data for the RNAseq samples (COX1, COX2, COX3, ND1, ND2, ND3, ND4L, ND5), and overall these levels of missing data were lower:
 
 | Region type | Sample type | Maximum missing data over all genes |
+| ----------- | ----------- | ----------------------------------- |
 | coding      | LRPCR       |              0.692                  |
 | coding      | Reference   |              0.606                  |
 | coding      | RNA         |              1.24                   |
