@@ -1,11 +1,11 @@
 ## Mitogenomes
 
 ### Alignment prep
-Received mitogenomes assembled to reference from RNAseq data from Oscar and LR-PCR mitogenomes from Donna. Aligned these alignments together using the default Geneious algorithm. Checked entire alignment by eye and realigned indel regions. Conducted a quick and dirty UPGMA and NJ tree on the entire alignment to check duplicate samples (e.g. different tissues from same individuals) were clading together. 
+Received mitogenomes assembled to reference from RNAseq data from Oscar and LR-PCR mitogenomes from Donna. Aligned these alignments together using the default Geneious algorithm. Checked entire alignment by eye and realigned indel regions. Conducted a quick and dirty UPGMA and NJ tree on the entire alignment to check duplicate samples of Sandy (e.g. different tissues from the reference individual) were clading together. 
 
 Following this, I extracted annotated regions (e.g. tRNAs, rRNAs, origin of light strand, protein-coding regions, d-loop). Regions with no annotations, or overlapping annotations, were not extracted. I then double-checked for "sane" protein-coding regions (e.g. no premature stop codons/frame-shift mutations etc), and added extra Ns if protein-coding genes were not in multiples of three (for codon-partitioned models downstream). ND6 was reverse-complemented.
 
-Following this, I exported these alignments to check levels of missing data per sample (to select for the representative tissue to use for individuals with duplicate tissues), and to evaluate levels of missingness for each region by data type (e.g. RNAseq vs LR-PCR). # WHO WAS REMOVED BASED ON THIS, AND WERE ALL REGIONS USED?
+Following this, I exported these alignments to check levels of missing data per sample (to select for the representative tissue to use for Sandy), and to evaluate levels of missingness for each region by data type (e.g. RNAseq vs LR-PCR). # WHO WAS REMOVED BASED ON THIS, AND WERE ALL REGIONS USED?
 
 Following this, I created six partitions: concatenated rRNA genes, concatenated tRNA genes, concatenated protein-coding gene codon 1 positions, codon 2 positions, codon 3 positions and control region/D-loop. All partitions were then concatenated, and file was exported as [phylip](https://github.com/laninsky/possums/blob/main/mitogenomes/data/total_partitioned_alignment.phylip). The following file (`partion_file`) was generated based on alignment order/length for partitioning RAxML and ExaBayes analyses:
 ```
