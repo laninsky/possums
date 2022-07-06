@@ -115,15 +115,13 @@ The BEAST runs timed out between 250,000,000 and 290,000,000, but after inspecti
 ```
 head -n 25135 run1.log > run1_trimmed.log
 head -n 25135 run2.log > run2_trimmed.log
+head -n 25661 run1.trees > run1_trimmed.trees
+head -n 25661 run2.trees > run2_trimmed.trees
 ```
-Based on Tracer, the "usual" burn-in of 10% looked appropriate. Log and tree files then had burn-in removed, and states thinned to leave approximately 20,000 states. The log files were then checked again in Tracer to ensure adequate ESS values and convergence between runs. Following this, TreeAnnotator was used to create a consensus tree for each run.
+The log files were then checked again in Tracer to ensure adequate ESS values and convergence between runs. Based on Tracer, the "usual" burn-in of 10% looked appropriate. Following this, TreeAnnotator was used to create a consensus tree for each run.
 ```
-/opt/nesi/CS400_centos7_bdw/BEAST/2.6.6/bin/logcombiner -log PC_codon3.log -burnin 10 -resample 1000 -o beast_run2_thinned.log
-/opt/nesi/CS400_centos7_bdw/BEAST/2.6.6/bin/logcombiner -log PC_codon3.trees -burnin 10 -resample 1000 -o beast_run2_thinned.trees
-/opt/nesi/CS400_centos7_bdw/BEAST/2.6.6/bin/treeannotator -burnin 0 beast_run2_thinned.trees annotated_beast_run2.tre
+/opt/nesi/CS400_centos7_bdw/BEAST/2.6.6/bin/treeannotator -burnin 10 run1_trimmed.trees annotated_beast_run1.tre
 
-/opt/nesi/CS400_centos7_bdw/BEAST/2.6.6/bin/logcombiner -log PC_codon3.log -burnin 10 -resample 1000 -o beast_run1_thinned.log
-/opt/nesi/CS400_centos7_bdw/BEAST/2.6.6/bin/logcombiner -log PC_codon3.trees -burnin 10 -resample 1000 -o beast_run1_thinned.trees
-/opt/nesi/CS400_centos7_bdw/BEAST/2.6.6/bin/treeannotator -burnin 0 beast_run1_thinned.trees annotated_beast_run1.tre
+/opt/nesi/CS400_centos7_bdw/BEAST/2.6.6/bin/treeannotator -burnin 10 run2_trimmed.trees annotated_beast_run2.tre
 ```
 The tree topology was then compared for each run. Following confirmation there were no highly supported differences, the two runs were combined, this tree was annotated, and was used as the representative Bayesian tree for this analysis.
