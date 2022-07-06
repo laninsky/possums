@@ -113,7 +113,8 @@ beast -threads 12 beast_possum_mitogenome_Jun2022.xml
 ```
 The BEAST runs timed out between 250,000,000 and 290,000,000, but after inspecting the logs in Tracer, these chains were more than long enough to reach decent (>200) ESS values. So I trimmed all the output files to 250,000,000 states for both runs. 
 ```
-head/tail
+head -n 25135 run1.log > run1_trimmed.log
+head -n 25135 run2.log > run2_trimmed.log
 ```
 Based on Tracer, the "usual" burn-in of 10% looked appropriate. Log and tree files then had burn-in removed, and states thinned to leave approximately 20,000 states. The log files were then checked again in Tracer to ensure adequate ESS values and convergence between runs. Following this, TreeAnnotator was used to create a consensus tree for each run.
 ```
