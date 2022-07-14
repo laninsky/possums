@@ -1,4 +1,4 @@
-# Outputs from mitogenome phylogenetic analyses:
+## Outputs from mitogenome phylogenetic analyses
 ### RaxML outputs
 RAxML_bipartitionsBranchLabels.run1  
 RAxML_bipartitionsBranchLabels.run2  
