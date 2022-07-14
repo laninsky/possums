@@ -120,4 +120,4 @@ head -n 25661 run2.trees > run2_trimmed.trees
 ```
 The log files were then checked again in Tracer to ensure adequate ESS values (all >200 except run1 bPopSizes.1 = 162.3, however converged on estimate of run2 so proceeded) and convergence between runs. Based on Tracer, the "usual" burn-in of 10% looked appropriate. Following this, TreeAnnotator was used to create a consensus tree for each run (Maximum clade credibility tree, Common Ancestor heights), removing the first 10% as burn-in.
 
-The tree topology was then compared for each run. Following confirmation there were no highly supported differences, the two runs were combined, this tree was annotated, and was used as the representative Bayesian tree for this analysis.
+The tree topology was then compared for each run. Following confirmation there were no highly supported differences, the two runs were combined, checked for adequate ESS values, and then a combined consensus tree was created and used as the representative Bayesian tree for this analysis.
