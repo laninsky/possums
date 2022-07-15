@@ -5,6 +5,7 @@ We received the geographic locations for some samples in New Zealand Transverse 
 
 For some samples, a verbal description of location was given, and an approximate long/lat was used based on these descriptions. We also added a little "jitter" for these samples so that different haplotypes could be seen on the map.
 
+### Plotting spatial distribution of mitogenome clades
 Following this, the excel spreadsheet was saved as a tab-delimited file before reading into R and creating some figures using [geospatial_code.R](geospatial_code.R). The necessary columns for this code are:
 - Location # Sample locality in text format
 - Longitude # Longitude without jitter added
