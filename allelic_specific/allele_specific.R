@@ -8,4 +8,4 @@ chromosome <- args[3]
 start_pos <- args[4]
 end_pos <- args[5]
 
-write.table("testing",args[1])
+write.table(args[1],"testing")
