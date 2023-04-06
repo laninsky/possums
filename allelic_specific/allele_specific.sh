@@ -27,3 +27,5 @@ else
   grep "^\#" "$2" >> $3.$2
   grep -v "^\#" "$2" | grep "$3" >> $3.$2
 fi
+
+Rscript --vanilla allele_specific.R $1 $2 $3 $4 $5
