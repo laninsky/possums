@@ -1,10 +1,11 @@
 #!/bin/sh
 
 echo "Usage is bash allele_specific.sh gVCF_file RNA_VCF_file chromosome gene_start_pos gene_end_pos"
-echo "allele_specific.R and files should be in this directory with allele_specific.sh"
+echo "allele_specific.R and files should be in this directory along with allele_specific.sh"
 echo "e.g."
-echo " bash allelic_specific.sh Sandy_S1_grouped.bam.vcf Sandy_liver.vcf chr9 191485302 191488654"
+echo "bash allelic_specific.sh Sandy_S1_grouped.bam.vcf Sandy_liver.vcf chr9 191485302 191488654"
 
+echo "Your inputs:"
 echo "gVCF file: $1"
 echo "RNA VCF file: $2"
 echo "chromosome: $3"
