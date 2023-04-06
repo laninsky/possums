@@ -8,4 +8,4 @@ echo "gene ending position: $5"
 
 
 echo "Subsetting RNA VCF file"
-grep -v "^\#" "$2" | grep "$3" "$2" >> $3.$2
+grep -v "^\#" "$2" | grep "$3" >> $3.$2
