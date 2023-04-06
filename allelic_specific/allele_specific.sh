@@ -28,4 +28,4 @@ else
   grep -v "^\#" "$2" | grep "$3" >> $3.$2
 fi
 
-Rscript --vanilla allele_specific.R $1 $2 $3 $4 $5
+Rscript --vanilla allelic_specific.R $1 $2 $3 $4 $5
