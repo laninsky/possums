@@ -5,10 +5,18 @@ echo "chromosome: $3"
 echo "gene starting position: $4"
 echo "gene ending position: $5"
 
-echo "Subsetting gVCF file"
-grep "^\#" "$1" >> $3.$1
-grep -v "^\#" "$1" | grep "0\/1" | grep "$3" >> $3.$1
+if [ -f "$3.$1" ]; then
+  echo "$3.$1 exists. Proceeding to next step"
+else
+  echo "Subsetting gVCF file"
+  grep "^\#" "$1" >> $3.$1
+  grep -v "^\#" "$1" | grep "0\/1" | grep "$3" >> $3.$1
+fi
 
-echo "Subsetting RNA VCF file"
-grep "^\#" "$2" >> $3.$2
-grep -v "^\#" "$2" | grep "$3" >> $3.$2
+if [ -f "$3.$2" ]; then
+  echo "$3.$2 exists. Proceeding to next step"
+else
+  echo "Subsetting RNA VCF file"
+  grep "^\#" "$2" >> $3.$2
+  grep -v "^\#" "$2" | grep "$3" >> $3.$2
+fi
