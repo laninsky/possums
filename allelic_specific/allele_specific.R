@@ -2,8 +2,8 @@
 
 args = commandArgs(trailingOnly=TRUE)
 
-gVCF_file <- paste(gsub(" ","",args[3]),gsub(" ","",args[1]),collapse=".")
-RNA_VCF_file <- paste(gsub(" ","",args[3]),gsub(" ","",args[2]),collapse=".")
+gVCF_file <- paste(args[3],args[1],sep=".")
+RNA_VCF_file <- paste(args[3],args[2],sep=".")
 chromosome <- args[3]
 start_pos <- as.numeric(args[4])
 end_pos <- as.numeric(args[5])
