@@ -8,12 +8,6 @@ chromosome <- args[3]
 start_pos <- as.numeric(args[4])
 end_pos <- as.numeric(args[5])
 
-# Lines for testing
-gVCF_file <- "chr9.Sandy_S1_grouped.bam.vcf"
-RNA_VCF_file <- "chr9.Sandy_liver.vcf"
-start_pos <- 191485302
-end_pos <- 191488654
-
 # Library
 library(tidyverse)
 library(vcfR)
