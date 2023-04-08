@@ -60,3 +60,5 @@ ggplot() +
   theme_bw(base_size = 12) +
   xlab("Chromosomal position (bp)") +
   ylab("Minor allele frequency")
+
+ggsave(paste(paste(chromosome, start_pos, end_pos, sep="_"),"pdf",sep="."))
