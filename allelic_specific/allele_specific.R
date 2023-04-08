@@ -2,8 +2,8 @@
 
 args = commandArgs(trailingOnly=TRUE)
 
-gVCF_file <- args[1]
-RNA_VCF_file <- args[2]
+gVCF_file <- paste(args[3],args[1],collapse=".")
+RNA_VCF_file <- paste(args[3],args[2],collapse=".")
 chromosome <- args[3]
 start_pos <- as.numeric(args[4])
 end_pos <- as.numeric(args[5])
@@ -14,7 +14,7 @@ library(tidyverse)
 library(vcfR)
 library(slider)
 
-print("Reading in the files")
+print(paste("Reading in the files:",gVCF_file,RNA_VCF_file))
 # Reading in the files
 gVCF <- vcfR2tidy(read.vcfR(gVCF_file, verbose = FALSE))$gt
 RNA_VCF <- vcfR2tidy(read.vcfR(RNA_VCF_file, verbose = FALSE))$gt 
