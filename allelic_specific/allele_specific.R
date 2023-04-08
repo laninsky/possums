@@ -8,15 +8,18 @@ chromosome <- args[3]
 start_pos <- as.numeric(args[4])
 end_pos <- as.numeric(args[5])
 
+print("Loading libraries")
 # Library
 library(tidyverse)
 library(vcfR)
 library(slider)
 
+print("Reading in the files")
 # Reading in the files
 gVCF <- vcfR2tidy(read.vcfR(gVCF_file, verbose = FALSE))$gt
 RNA_VCF <- vcfR2tidy(read.vcfR(RNA_VCF_file, verbose = FALSE))$gt 
 
+print("Calculating minor allele frequency")
 # Getting minor allele frequency
 gVCF_mod <- gVCF %>% filter(!is.na(gt_AD)) %>% mutate(gt_AD=gsub("(^.*)(,0$)","\\1",gt_AD)) %>% 
   rowwise() %>%  mutate(min_allele_freq=min(as.numeric(unlist(strsplit(gt_AD,","))))/sum(as.numeric(unlist(strsplit(gt_AD,",")))))
@@ -24,6 +27,7 @@ gVCF_mod <- gVCF %>% filter(!is.na(gt_AD)) %>% mutate(gt_AD=gsub("(^.*)(,0$)","\
 RNA_VCF_mod <- RNA_VCF %>% filter(!is.na(gt_AD)) %>% mutate(gt_AD=gsub("(^.*)(,0$)","\\1",gt_AD)) %>% 
   rowwise() %>%  mutate(min_allele_freq=min(as.numeric(unlist(strsplit(gt_AD,","))))/sum(as.numeric(unlist(strsplit(gt_AD,",")))))
 
+print("Sliding window for the gVCF minor allele frequencies")
 # Sliding window for gVCF
 gVCF_POS_mean_slide <- slide_dbl(gVCF_mod$POS, mean, .before = 10)
 gVCF_min_allele_mean_slide <- slide_dbl(gVCF_mod$min_allele_freq, mean, .before = 10)
@@ -33,6 +37,7 @@ names(gVCF_slide) <- c("POS","mean_gVCF","sd_gVCF")
 gVCF_slide <- gVCF_slide %>% mutate(min_gVCF=mean_gVCF-qt(0.975,df=9)*sd_gVCF/sqrt(10)) %>%
   mutate(max_gVCF=mean_gVCF+qt(0.975,df=9)*sd_gVCF/sqrt(10))
 
+print("Sliding window for the RNA VCF minor allele frequencies")
 # Sliding window for RNA_VCF
 RNA_VCF_POS_mean_slide <- slide_dbl(RNA_VCF_mod$POS, mean, .before = 10)
 RNA_VCF_min_allele_mean_slide <- slide_dbl(RNA_VCF_mod$min_allele_freq, mean, .before = 10)
@@ -42,6 +47,7 @@ names(RNA_VCF_slide) <- c("POS","mean_RNA_VCF","sd_RNA_VCF")
 RNA_VCF_slide <- RNA_VCF_slide %>% mutate(min_RNA_VCF=mean_RNA_VCF-qt(0.975,df=9)*sd_RNA_VCF/sqrt(10)) %>%
   mutate(max_RNA_VCF=mean_RNA_VCF+qt(0.975,df=9)*sd_RNA_VCF/sqrt(10))
 
+print("Plotting the results")
 # Plotting
 ggplot() + 
   geom_ribbon(data=gVCF_slide,
