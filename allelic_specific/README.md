@@ -6,4 +6,4 @@ e.g.
 bash allelic_specific.sh Sandy_S1_grouped.bam.vcf Sandy_liver.vcf chr9 191485302 191488654
 ```
 
-R needs be in your path as well, as well as HarfBuzz
+R needs be in your path as well.
